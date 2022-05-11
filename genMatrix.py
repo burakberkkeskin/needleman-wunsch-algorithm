@@ -33,11 +33,14 @@ def setFirstRowAndCloumn(blockMatrix, gen1, gen2):
 
 def fillMatrix(blockMatrix, gen1, gen2):
   i, j = 1, 1
+  count = 0
   while i < len(gen2):
     while j < len(gen1):
+      
       leftBlockPoint = blockMatrix[i][j-1].GetMainPoint()
       upBlockPoint = blockMatrix[i-1][j].GetMainPoint()
       crossBlockPoint = blockMatrix[i-1][j-1].GetMainPoint()
+
       blockMatrix[i][j].SetLeftPoint(leftBlockPoint+gap)
       blockMatrix[i][j].SetUpPoint(upBlockPoint+gap)
 
@@ -47,10 +50,12 @@ def fillMatrix(blockMatrix, gen1, gen2):
         blockMatrix[i][j].SetCrossPoint(crossBlockPoint+mismatch)
 
       blockMatrix[i][j].SetRotationAndPoint()
-
+      count += 1
       j+=1
     j=1
     i+=1
+
+  print(count,"Steeps processed")
   return blockMatrix
 
 def printMatrix(blockMatrix, gen1, gen2):
